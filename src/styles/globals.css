@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* 科技风配色系统 */
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: #1a1a24;
+  --bg-card-hover: #22222e;
+  --accent-blue: #00d4ff;
+  --accent-blue-light: #4da8ff;
+  --accent-cyan: #00ffcc;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b0;
+  --text-muted: #6a6a7a;
+  --border: #2a2a35;
+  --border-glow: #00d4ff40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+}
+
+/* 科技风渐变背景 */
+.bg-tech-gradient {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, #0f0f1a 100%);
+}
+
+/* 霓虹发光效果 */
+.glow-border {
+  border: 1px solid var(--border);
+  box-shadow: 0 0 20px var(--border-glow), inset 0 0 20px rgba(0, 212, 255, 0.05);
+}
+
+.glow-text {
+  color: var(--accent-blue);
+  text-shadow: 0 0 10px var(--accent-blue), 0 0 20px var(--accent-blue);
+}
+
+.glow-button {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.glow-button:hover {
+  box-shadow: 0 6px 25px rgba(0, 212, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* 卡片样式 */
+.card-tech {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card-tech:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+/* 流光动画 */
+@keyframes glow-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glow-flow-bg {
+  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+  background-size: 200% 100%;
+  animation: glow-flow 3s infinite;
+}
+
+/* 网格背景 */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* 链接样式 */
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-cyan);
+}
+
+/* 搜索框 */
+.search-input {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* 分类标签 */
+.tag-tech {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: var(--accent-blue);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.tag-tech:hover {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: var(--accent-blue);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+/* 文章内容样式 */
+.article-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.article-content h2 {
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem;
+  color: var(--accent-blue);
+}
+
+.article-content h3 {
+  font-size: 1.25rem;
+  margin: 1rem 0 0.5rem;
+  color: var(--text-primary);
+}
+
+.article-content p {
+  margin: 1rem 0;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.article-content ul, .article-content ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.article-content code {
+  background: var(--bg-secondary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: var(--accent-cyan);
+  font-family: 'Fira Code', monospace;
+}
+
+.article-content pre {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.article-content pre code {
+  background: none;
+  padding: 0;
+}
