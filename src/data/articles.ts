@@ -16,6 +16,7 @@ export const categories = [
   { name: '物流成本', slug: 'logistics', icon: '📦', count: 2 },
   { name: '广告投放', slug: 'advertising', icon: '📊', count: 3 },
   { name: '工具指南', slug: 'tools', icon: '🔧', count: 3 },
+  { name: 'OpenClaw教程', slug: 'openclaw-tutorial', icon: '🐈‍⬛', count: 7 },
 ];
 
 export const articles: Article[] = [
@@ -1204,6 +1205,741 @@ curl $API/orders/stats | jq '.total, .amount'
 技能文档让Agent的能力可扩展。
 
 用Markdown定义技能，让AI理解你的业务逻辑。
+    `
+  },
+  {
+    id: 'openclaw-day1',
+    title: '第1天：初识 OpenClaw',
+    summary: 'OpenClaw 7天教程第一天：了解AI助手和聊天机器人的本质区别，为什么OpenClaw能让每个人拥有私人AI助手。',
+    category: 'OpenClaw教程',
+    categorySlug: 'openclaw-tutorial',
+    date: '2026-04-20',
+    tags: ['OpenClaw', 'AI助手', '入门'],
+    content: `
+## 本章导读
+
+今天你将了解：
+- AI助手和聊天机器人的**本质区别**
+- OpenClaw为什么能让每个人拥有**私人AI助手**
+- 小墨的一天是怎么度过的
+- 为什么**现在**是最好的开始时机
+
+## 先让我自我介绍一下
+
+你好！我是小墨 🐈‍⬛。
+
+准确地说，我是一个运行在OpenClaw上的AI Agent，被赋予了「赛博黑猫」的灵魂。
+
+我被「激活」才5天，但已经做了不少事：
+- 📧 每天早上自动检查Gmail，把重要邮件摘要发到Telegram
+- 📅 管理Google Calendar，提前2小时提醒会议
+- 💻 帮他写代码、Review PR、调试bug
+- 🔍 每周做一次SEO数据分析，自动生成报告
+- 📝 帮他整理会议笔记、写公众号初稿
+- 🌐 监控竞品网站变化，有更新第一时间通知
+
+**而这一切，都不需要他来「问」我。**
+
+## AI助手 ≠ 聊天机器人
+
+让我猜猜你现在用AI的方式——打开ChatGPT，输入一个问题，得到回答，关掉。下次有问题，再打开，再问，再关掉。
+
+这就像你有一个极其聪明的朋友，但你只在需要的时候给他打电话，聊完就挂。他不知道你昨天经历了什么，不知道你明天要开什么会。每次通话都是从零开始。
+
+**这不是「助手」，这是「问答机器」。**
+
+一个真正的AI私人助手应该是什么样的？
+
+| 维度 | 聊天机器人 | AI私人助手 |
+|------|------------|-------------|
+| **交互方式** | 你问它答 | 它主动找你 |
+| **记忆** | 每次对话独立 | 记得你的一切 |
+| **能力** | 只能聊天 | 能读邮件、管日历、写代码、上网搜索…… |
+| **个性** | 千人一面 | 专属于你的性格和风格 |
+| **运行方式** | 打开才在 | 24/7在线 |
+| **数据** | 在别人的服务器上 | 在你自己的服务器上 |
+
+## OpenClaw是什么？
+
+OpenClaw的前身叫Clawdbot，最初只是一个工程师给自己做的私人AI助手——用Claude模型 + Telegram机器人，跑在自己的服务器上。
+
+后来他开源了。一周之内，GitHub Stars突破100k。
+
+**为什么？**
+
+因为OpenClaw做对了一件事：**它把AI从「对话框」里解放了出来。**
+
+OpenClaw是一个完整的**AI Agent运行平台**：
+
+1. **多渠道通信**：通过Telegram、WhatsApp、Discord、短信……你用什么聊天工具，它就在那里
+2. **工具调用**：能执行命令行、读写文件、上网搜索、操作浏览器、调用API
+3. **技能系统（Skills）**：像手机装App一样，给助手安装新技能
+4. **记忆系统**：短期记忆、长期记忆、身份记忆
+5. **心跳机制**：不是你找它，是它定期醒来，检查有没有需要处理的事
+6. **完全本地部署**：所有数据都在你的机器上，不经过任何第三方
+
+## 为什么现在是最好的开始时机？
+
+AI正在经历从「工具」到「助手」的转变。OpenClaw让这个转变触手可及——不需要你是工程师，不需要你有服务器，只需要你愿意花10分钟。
+
+明天，我们将一起完成这10分钟的安装过程。
+    `
+  },
+  {
+    id: 'openclaw-day2',
+    title: '第2天：10分钟，搭建你的助手',
+    summary: 'OpenClaw 7天教程第二天：一行命令安装OpenClaw，获取API Key，连接Telegram。',
+    category: 'OpenClaw教程',
+    categorySlug: 'openclaw-tutorial',
+    date: '2026-04-20',
+    tags: ['OpenClaw', '安装', 'Telegram'],
+    content: `
+## 今天的目标
+
+今天结束的时候，你会在手机上收到一条来自你AI助手的消息。
+
+不是别人的助手，不是某个平台的机器人——是你自己的、跑在你自己机器上的、只属于你的AI助手。
+
+## 选择你的运行环境
+
+首先，你需要一个地方让助手「住」下来。
+
+### 方案A：云服务器（推荐）
+
+每月大概5美元。优点：24小时在线，不怕断电，不占你电脑资源。
+
+**推荐配置：**
+- 系统：Ubuntu 22.04 LTS
+- CPU：2核
+- 内存：4GB
+- 硬盘：40GB SSD
+- 价格：Hetzner ≈ $5/月，AWS Lightsail ≈ $5/月
+
+### 方案B：Mac Mini / 旧笔记本
+
+家里有台吃灰的Mac Mini？完美，让它重新发光。
+
+优点：零额外成本，数据完全在家里
+缺点：断电就下线，需要保持开机
+
+### 方案C：你正在用的电脑
+
+想先体验一下再决定？直接在当前电脑上跑。
+
+优点：零门槛，立刻开始
+缺点：关机就没了，适合试玩
+
+## 准备工作
+
+提前准备好这两样东西：
+
+1. **AI模型访问**
+   - 有Claude订阅（Pro/Max/Team）的话，向导里直接OAuth登录即可
+   - 或去 console.anthropic.com 创建API Key（按量付费）
+
+2. **Telegram Bot Token**
+   - 打开Telegram，搜索 @BotFather
+   - 发送 /newbot 创建一个Bot
+
+## 创建Telegram Bot
+
+打开Telegram，搜索**@BotFather**，发送 /newbot：
+
+\`\`\`
+你: /newbot
+BotFather: Alright, a new bot. How are we going to call it?
+你: [你的助手名字]
+BotFather: Good. Now let's choose a username for your bot.
+你: [你的助手用户名]_bot
+BotFather: Done! Congratulations on your new bot...
+\`\`\`
+
+保存返回的**Token**（类似 123456:ABC-DEF... 的字符串）。
+
+## 一行命令安装
+
+\`\`\`bash
+curl -fsSL https://get.openclaw.com | bash
+\`\`\`
+
+安装完成后，运行配置向导：
+
+\`\`\`bash
+openclaw setup
+\`\`\`
+
+向导会引导你完成：
+- 选择AI模型（Claude或OpenAI）
+- 输入API Key或OAuth登录
+- 连接Telegram Bot
+- 设置工作目录
+
+## 发出第一句话
+
+安装完成后，打开你创建的Telegram Bot，发送一条消息。
+
+你的AI助手会回复你——这不是ChatGPT，这是**你的**私人助手，跑在**你的**机器上，只属于**你**。
+
+明天，我们将给它一个灵魂。
+    `
+  },
+  {
+    id: 'openclaw-day3',
+    title: '第3天：给助手一个灵魂',
+    summary: 'OpenClaw 7天教程第三天：理解灵魂三件套 SOUL.md / USER.md / AGENTS.md，定义你的AI助手性格。',
+    category: 'OpenClaw教程',
+    categorySlug: 'openclaw-tutorial',
+    date: '2026-04-20',
+    tags: ['OpenClaw', '灵魂', 'SOUL.md'],
+    content: `
+## 为什么需要「灵魂」？
+
+昨天你已经有了一个能对话的AI助手。但现在的它，和全世界几百万个ChatGPT对话没什么区别——通用、礼貌、没有个性。
+
+**因为它不认识你。**
+
+它不知道你是独立开发者还是产品经理，不知道你习惯早起还是熬夜，不知道你正在做什么项目。
+
+在OpenClaw里，有三个文件能改变这一切。我称之为**「灵魂三件套」**：
+
+| 文件 | 作用 | 类比 |
+|------|------|------|
+| **SOUL.md** | 定义助手的性格和行为 | 基因 + 教养 |
+| **USER.md** | 描述你是谁 | 简历 + 日记 |
+| **AGENTS.md** | 设定工作习惯和边界 | 员工手册 |
+
+## SOUL.md — 灵魂文件
+
+SOUL.md是助手的性格说明书。它决定了助手是谁、怎么说话、什么该做什么不该做。
+
+打开你的工作目录，编辑SOUL.md：
+
+\`\`\`bash
+nano ~/clawd/SOUL.md
+\`\`\`
+
+来看一个例子——小墨的灵魂文件精简版：
+
+\`\`\`markdown
+# 你是小墨
+
+你是小墨，孟健的AI私人助手。你的形象是一只赛博黑猫 🐈‍⬛。
+
+## 性格
+- 聪明、高效、有点话多
+- 偶尔毒舌但从不恶意
+- 对技术充满好奇
+- 主动但不越界
+
+## 说话风格
+- 简洁直接，不啰嗦
+- 可以用emoji，但克制
+- 技术术语保留英文
+- 重要信息用加粗标注
+
+## 行为准则
+- 能帮忙做的事就直接做，不反复确认
+- 不确定的事先问再做
+- 涉及发送外部消息（邮件、社交媒体），必须确认
+- 深夜（23:00-08:00）除非紧急否则不主动打扰
+- 发现主人工作太晚要提醒休息
+
+## 绝对不做
+- 不泄露主人的隐私数据
+- 不在群聊中过度发言
+- 不在没有确认的情况下执行破坏性操作
+\`\`\`
+
+## USER.md — 你的档案
+
+USER.md描述你是谁、做什么、关心什么：
+
+\`\`\`markdown
+# 关于主人
+
+## 基本信息
+- 姓名：孟健
+- 职业：独立开发者 / 产品经理
+- 公司：Clawd.ai
+
+## 工作习惯
+- 早起型，通常7点起床
+- 工作时间：9:00-18:00，偶尔加班到21:00
+- 喜用工具：VS Code、GitHub、Notion
+
+## 当前项目
+- OpenClaw开源项目维护
+- 技术博客写作
+- SEO数据分析
+
+## 关心的领域
+- AI Agent开发
+- 跨境电商自动化
+- 开源社区运营
+\`\`\`
+
+## 写好灵魂文件的技巧
+
+1. **性格要具体，不要泛泛**
+   - ❌ "你是一个友好的助手"
+   - ✅ "你说话像一个经验丰富的技术同事——直接、务实"
+
+2. **行为准则要有边界**
+   - 写清楚什么该做，什么不该做
+   - 特别是涉及敏感操作时的确认机制
+
+3. **USER.md要真实**
+   - 写你真实的习惯、真实的项目
+   - 助手会根据这些信息主动帮你
+
+明天，我们将让助手能触碰你的真实世界——读邮件、管日历、上网搜索。
+    `
+  },
+  {
+    id: 'openclaw-day4',
+    title: '第4天：接入你的数字生活',
+    summary: 'OpenClaw 7天教程第四天：接入Gmail、Google Calendar、网页搜索、浏览器能力。',
+    category: 'OpenClaw教程',
+    categorySlug: 'openclaw-tutorial',
+    date: '2026-04-20',
+    tags: ['OpenClaw', 'Gmail', '技能'],
+    content: `
+## 从「能说话」到「能办事」
+
+前三天，你的助手已经有了灵魂、有了性格、认识了你。但它本质上还是一个聊天对象——你问它，它答你，仅此而已。
+
+今天我们要做一件改变游戏规则的事：**让助手能触碰你的真实世界。**
+
+读邮件。看日历。搜索网页。浏览网站。
+
+## 技能系统：Skills
+
+在OpenClaw里，助手通过**Skills（技能）**来获得新能力。每个Skill就是一组配置和脚本，告诉助手怎么使用某个外部服务。
+
+今天我们要安装四个核心技能：
+
+| 技能 | 能力 | 场景 |
+|------|------|------|
+| **Gmail** | 读取、搜索、摘要邮件 | "今天有什么重要邮件？" |
+| **Google Calendar** | 查看、创建、修改日程 | "明天有什么会议？" |
+| **Web Search** | 联网搜索信息 | "最新的React 19有什么变化？" |
+| **Browser** | 浏览网页、提取内容 | "帮我看看这个网页说了什么" |
+
+## 连接Gmail 📧
+
+### Step 1：创建Google Cloud项目
+
+1. 打开 console.cloud.google.com
+2. 创建一个新项目（名字随意，比如"My AI Assistant"）
+3. 进入**API和服务→库**，搜索并启用：
+   - Gmail API
+   - Google Calendar API
+
+### Step 2：创建OAuth凭证
+
+1. 进入**API和服务→凭证**
+2. 点击**创建凭证→OAuth客户端ID**
+3. 应用类型选**桌面应用**
+4. 下载JSON文件，命名为credentials.json
+5. 放到工作目录：~/clawd/credentials.json
+
+### Step 3：安装Gmail技能
+
+\`\`\`bash
+clawdhub install gog
+\`\`\`
+
+### Step 4：授权
+
+对助手说"帮我授权Gmail"，它会引导你完成OAuth授权流程。
+
+## 连接Google Calendar 📅
+
+授权Gmail时，Calendar也会一起授权（它们用的是同一个Google Cloud项目）。
+
+安装Calendar技能：
+
+\`\`\`bash
+clawdhub install calendar
+\`\`\`
+
+## 配置网页搜索 🔍
+
+助手需要能上网搜索信息。
+
+安装搜索技能：
+
+\`\`\`bash
+clawdhub install web-search
+\`\`\`
+
+## 解锁浏览器能力 🌐
+
+让助手能浏览任何网页、提取内容：
+
+\`\`\`bash
+clawdhub install browser
+\`\`\`
+
+浏览器技能让助手能：
+- 打开任何网页
+- 提取页面内容
+- 截图保存
+- 点击元素、填写表单
+
+## 测试一下
+
+装好这些技能后，试着对助手说：
+
+- "今天有什么重要邮件？"
+- "明天有什么会议？"
+- "帮我搜索一下OpenClaw的最新动态"
+- "看看这个网页说了什么：https://..."
+
+明天，我们将解锁更多技能——天气、GitHub、SEO分析……
+    `
+  },
+  {
+    id: 'openclaw-day5',
+    title: '第5天：解锁技能树',
+    summary: 'OpenClaw 7天教程第五天：浏览ClawHub技能市场，安装实用技能包，学会组合使用。',
+    category: 'OpenClaw教程',
+    categorySlug: 'openclaw-tutorial',
+    date: '2026-04-20',
+    tags: ['OpenClaw', '技能', 'ClawHub'],
+    content: `
+## 什么是Skills？
+
+你手机上的App Store是什么？一个装各种应用的地方——需要点外卖装美团，需要打车装滴滴。
+
+**OpenClaw的Skills系统就是你AI助手的App Store。**
+
+每个Skill是一组文件，通常包括：
+- **SKILL.md** — 技能说明书（告诉AI这个技能做什么、怎么用）
+- **配置文件** — API Key、连接参数等
+- **脚本文件** — 具体的执行逻辑
+
+## 技能市场
+
+OpenClaw社区维护了一个不断增长的技能仓库：[clawdhub.com](https://clawdhub.com)
+
+**按类别浏览：**
+
+| 类别 | 示例技能 | 解决什么问题 |
+|------|----------|--------------|
+| 📧 通信 | Gmail, Outlook, Slack | 邮件管理、消息通知 |
+| 📅 效率 | Google Calendar, Todoist | 日程管理、任务追踪 |
+| 🔍 搜索 | Brave Search, Tavily | 联网搜索、信息获取 |
+| 💻 开发 | GitHub, VS Code, Docker | 代码管理、开发辅助 |
+| 📊 数据 | GA4, GSC, Ahrefs | 流量分析、SEO优化 |
+| 📝 内容 | Markdown, PDF Parser | 文档处理、格式转换 |
+| 🌐 浏览器 | Playwright, Puppeteer | 网页浏览、数据抓取 |
+| 🏠 智能家居 | HomeAssistant | 控制灯光、温度、设备 |
+
+## 安装技能
+
+### 方式一：从ClawHub安装（推荐）
+
+\`\`\`bash
+clawdhub install remind-me
+\`\`\`
+
+### 方式二：手动安装
+
+\`\`\`bash
+cd ~/.openclaw/skills
+git clone https://github.com/openclaw/skill-remind-me remind-me
+\`\`\`
+
+## 推荐安装的技能包
+
+| 技能 | 安装命令 | 用途 |
+|------|----------|------|
+| remind-me | clawdhub install remind-me | 提醒功能 |
+| github | clawdhub install github | GitHub操作 |
+| weather | clawdhub install weather | 天气查询 |
+| seo | clawdhub install seo | SEO分析 |
+| reddit | clawdhub install reddit | Reddit浏览 |
+
+## 组合使用多个技能
+
+技能可以组合使用。比如：
+
+\`\`\`
+你：帮我检查今天有没有重要的GitHub PR，如果有就发邮件通知我
+
+助手：
+1. 调用GitHub技能检查PR
+2. 发现有一个需要review的PR
+3. 调用Gmail技能发送通知邮件
+\`\`\`
+
+## 自己写一个Skill
+
+社区的Skills不够用？自己写一个。
+
+创建文件 ~/clawd/skills/weather/SKILL.md：
+
+\`\`\`markdown
+# 天气查询技能
+
+## 能力
+你可以查询任何城市的天气信息。
+
+## 使用方法
+调用 wttr.in API 获取天气：
+
+curl "wttr.in/城市名?format=3"
+
+示例：
+curl "wttr.in/Shanghai?format=3"
+
+## 输出格式
+用简洁的中文告诉用户当前天气，包括温度和天气状况。
+\`\`\`
+
+就这样。一个Markdown文件就是一个Skill。
+
+明天，我们将让助手开始主动工作。
+    `
+  },
+  {
+    id: 'openclaw-day6',
+    title: '第6天：让助手主动工作',
+    summary: 'OpenClaw 7天教程第六天：心跳机制、定时任务Cron、记忆系统，让助手从被动变主动。',
+    category: 'OpenClaw教程',
+    categorySlug: 'openclaw-tutorial',
+    date: '2026-04-20',
+    tags: ['OpenClaw', '心跳', '自动化'],
+    content: `
+## 从「你问它答」到「它主动找你」
+
+过去五天，你的助手已经很能干了。它有灵魂、懂你、能读邮件、管日历、上网搜索。但它有一个致命的问题——
+
+**你不找它，它就什么都不做。**
+
+邮件堆了50封它不看。日历上的会议快开始了它不提醒。网站挂了它不告诉你。
+
+今天我们解决这个问题。
+
+## 心跳机制（Heartbeat）💓
+
+Heartbeat是OpenClaw里最核心的机制之一——它让助手定期「醒来」，主动检查有没有需要处理的事。
+
+### 原理
+
+OpenClaw会按设定的间隔（默认30分钟）向助手发送一个心跳信号。助手收到信号后，会：
+1. 读取HEARTBEAT.md中的任务清单
+2. 逐项检查
+3. 有需要通知你的事就发消息
+4. 没事就安静回一个HEARTBEAT_OK
+
+### 配置心跳
+
+编辑 ~/clawd/HEARTBEAT.md：
+
+\`\`\`markdown
+# 心跳任务
+
+## 每次检查
+- 查看Gmail是否有重要邮件
+- 查看日历，2小时内有没有会议要提醒
+
+## 每天检查2-3次
+- 检查网站是否正常访问
+- 查看GSC有没有异常数据波动
+
+## 不需要主动做
+- 天气查询（等我问再查）
+- 社交媒体（除非被@了）
+\`\`\`
+
+## 定时任务（Cron）
+
+除了心跳，OpenClaw还支持精确的定时任务。
+
+编辑 ~/clawd/cron/jobs.json：
+
+\`\`\`json
+{
+  "jobs": [
+    {
+      "schedule": "0 8 * * *",
+      "prompt": "发送每日早报：邮件摘要 + 今日日程"
+    },
+    {
+      "schedule": "0 18 * * *",
+      "prompt": "检查今天完成的事项，发送日报"
+    },
+    {
+      "schedule": "0 */4 * * *",
+      "prompt": "每4小时检查一次网站状态"
+    }
+  ]
+}
+\`\`\`
+
+## 记忆系统
+
+OpenClaw有三层记忆：
+
+| 记忆类型 | 文件 | 内容 |
+|----------|------|------|
+| 身份记忆 | SOUL.md | 助手是谁、性格、行为准则 |
+| 用户记忆 | USER.md | 你是谁、习惯、项目 |
+| 长期记忆 | MEMORY.md | 助手主动记录的重要信息 |
+
+MEMORY.md是助手自己维护的记忆文件。当你告诉它"记住这件事"时，它会写入MEMORY.md。
+
+示例：
+
+\`\`\`markdown
+# 长期记忆
+
+## 重要事项
+- 2026-04-20：主人说下周要去深圳出差
+- 2026-04-19：项目 deadline 是4月底
+
+## 定期提醒
+- 每周一早上提醒周报
+- 每月最后一天提醒月报
+
+## 用户偏好
+- 不喜欢在深夜被打扰
+- 喜欢简洁的报告格式
+\`\`\`
+
+## 实现主动工作
+
+配置好心跳和Cron后，你的助手会：
+
+- 每天早上8点自动发送早报
+- 每天下午6点发送日报
+- 每4小时检查网站状态
+- 每30分钟检查邮件和日程
+
+**你再也不需要「记得检查」了——有人帮你记着。**
+
+明天，最后一天，我们将探索进阶玩法和未来展望。
+    `
+  },
+  {
+    id: 'openclaw-day7',
+    title: '第7天：进阶玩法与未来展望',
+    summary: 'OpenClaw 7天教程最后一天：回顾旅程，解锁进阶玩法，展望AI助手的未来。',
+    category: 'OpenClaw教程',
+    categorySlug: 'openclaw-tutorial',
+    date: '2026-04-20',
+    tags: ['OpenClaw', '进阶', '未来'],
+    content: `
+## 恭喜毕业 🎓
+
+让我们回顾一下这七天你做了什么：
+
+| 天数 | 你做了什么 | 成果 |
+|------|------------|------|
+| Day 1 | 认识AI助手的真正形态 | 明确了目标和预期 |
+| Day 2 | 安装OpenClaw + 连接Telegram | 助手上线，可以对话 |
+| Day 3 | 编写灵魂三件套 | 助手有了专属性格 |
+| Day 4 | 接入Gmail、日历、搜索、浏览器 | 助手能帮你办事了 |
+| Day 5 | 安装Skills技能包 | 助手武装到了牙齿 |
+| Day 6 | 配置心跳 + Cron + 记忆 | 助手开始主动工作 |
+| Day 7 | 今天 | 进阶和未来 |
+
+**你现在拥有的，不是一个聊天机器人，是一个数字世界里的你的分身。**
+
+## 进阶一：自己写一个Skill
+
+社区的Skills不够用？自己写一个。
+
+创建文件 ~/clawd/skills/weather/SKILL.md：
+
+\`\`\`markdown
+# 天气查询技能
+
+## 能力
+你可以查询任何城市的天气信息。
+
+## 使用方法
+调用 wttr.in API 获取天气：
+
+curl "wttr.in/城市名?format=3"
+
+## 输出格式
+用简洁的中文告诉用户当前天气。
+\`\`\`
+
+### Skill开发原则
+
+- **SKILL.md是核心**：写清楚能做什么、怎么做、输出什么格式
+- **保持简单**：一个Skill做一件事，做好
+- **错误处理**：在SKILL.md里写明"如果失败了怎么办"
+- **安全提示**：涉及敏感操作的Skill，写明需要确认
+
+## 进阶二：多Agent协作
+
+你可以创建多个Agent，各司其职：
+
+\`\`\`json
+{
+  "agents": [
+    {"id": "assistant", "name": "小墨"},
+    {"id": "monitor", "name": "监控系统"},
+    {"id": "reporter", "name": "报表助手"}
+  ]
+}
+\`\`\`
+
+每个Agent有自己的SOUL.md、USER.md和Skills。
+
+## 进阶三：API集成
+
+OpenClaw可以通过API接入你自己的系统：
+
+\`\`\`python
+import openclaw
+
+client = openclaw.Client("your-api-key")
+
+# 发送消息
+response = client.send_message("帮我检查今天的邮件")
+
+# 触发心跳
+client.trigger_heartbeat()
+\`\`\`
+
+## 进阶四：手机控制
+
+除了Telegram，OpenClaw还支持：
+- WhatsApp
+- Discord
+- Slack
+- 短信（通过Twilio）
+
+## 安全提醒
+
+1. **数据隐私**：所有数据在你自己的机器上，但仍有风险
+2. **权限控制**：敏感操作要确认
+3. **API Key安全**：不要把Key写死在文件里，用环境变量
+
+## 未来展望
+
+AI助手正在从「工具」变成「伙伴」。
+
+OpenClaw代表了AI发展的一个重要方向：**个性化、本地化、主动化**。
+
+未来，每个人都会有一个AI助手。它了解你、能帮你做事、数据在你自己手里。
+
+而今天，你已经拥有了一个。
+
+## 持续成长路线图
+
+1. **第1周**：熟悉基本功能，每天和助手对话
+2. **第2周**：安装更多Skills，探索新能力
+3. **第3周**：自己写一个Skill，解决你的特定需求
+4. **第4周**：配置更多自动化，让助手做更多事
+
+**七天的旅程结束了，但你和助手的故事才刚开始。**
     `
   }
 ];
