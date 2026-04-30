@@ -6,6 +6,7 @@ import ArticleDetail from './pages/ArticleDetail';
 import CategoryPage from './pages/CategoryPage';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import ImageGen from './pages/ImageGen';
 import './styles/globals.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="articles" element={<Articles />} />
           <Route path="articles/:id" element={<ArticleDetail />} />
           <Route path="articles/category/:slug" element={<CategoryPage />} />
+          <Route path="image-gen" element={<ImageGen />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>

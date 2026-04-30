@@ -6,6 +6,7 @@ export default function Header() {
   const navItems = [
     { path: '/', label: '首页' },
     { path: '/articles', label: '文章' },
+    { path: '/image-gen', label: '图片生成' },
     { path: '/about', label: '关于' },
     { path: '/contact', label: '联系' },
   ];
