@@ -31,7 +31,7 @@ export default function ImageGen() {
           'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: 'gpt-image-1',
+          model: 'gpt-image-2',
           prompt: prompt,
           n: 1,
           size: '1024x1024',
@@ -89,7 +89,7 @@ export default function ImageGen() {
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">AI 图片生成</h1>
             <p className="text-[var(--text-secondary)] text-lg">
-              使用 OpenAI <span className="text-[var(--accent-blue)]">gpt-image-1</span> 模型，输入描述即可生成图片
+              使用 OpenAI <span className="text-[var(--accent-blue)]">gpt-image-2</span> 模型，输入描述即可生成图片
             </p>
           </div>
 
